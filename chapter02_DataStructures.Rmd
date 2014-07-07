@@ -1,0 +1,191 @@
+# R Data Structures
+
+
+## Using Simple Data Types
+## Integer 
+
+```{r}
+x <- 32
+```
+
+```{r}
+x <- 32
+32 -> x
+```
+
+## Numeric
+```{r}
+x <- 4.67
+y <- 8.58
+```
+
+## Char
+
+```{r}
+myChar <- "a"
+myName <- "John"
+class(myChar)
+class(myName)
+```
+
+
+
+## Logical
+
+```{r}
+x <- 1
+y <- 2
+x < y
+```
+
+## Complex
+```{r}
+x <- 2
+y <- 3
+z <- complex(real = x, imaginary = y)
+z
+```
+
+## Creating datasets with vectors
+
+## Creating simple vectors
+```{r}
+myFirstVector <- c (2, 14, 6, 17, 18, 9, 15, 25, 7, 11)
+mean(myFirstVector)
+n <- rep(2, 10) 
+n <- rep(c(2, 5), 10)
+seq(20)
+seq(0, 20, 2)
+seq(from = 0, to = 20, by = 2)
+?seq
+seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, along.with = NULL, ...) 
+myCharacterVector <- c("a", "b", "c", "d", "e")
+myStringVector <- c("apple", "grape", "pomegranate", "orange", "banana")
+myCharacterVector <- c("a", "b", "c", "d", "e", 1, 2)
+myCharacterVector
+
+myStringVector[1]
+myStringVector[2]
+
+```
+
+## Performing basic mathematic operations on vectors 
+
+## Manipulating vectors with functions
+
+## Storing characters and strings with vectors
+
+## Matrices
+
+### Creating a simple matrix
+```{r}
+myFirstMatrix <- matrix(1:20, 4, 5)
+myFirstMatrix
+myFirstMatrix <- matrix(1:20, nrow = 4, ncol = 5)
+myFirstMatrix
+myFirstMatrix <- matrix(1:20, nrow = 5, ncol = 4)
+myFirstMatrix
+myFirstMatrix <- matrix(1:20, 4, 5)
+myFirstMatrix <- matrix(1:20, nrow = 4, ncol = 5)
+myFirstMatrix <- matrix(1:20, 5, 4)
+myFirstMatrix <- matrix(1:20, nrow = 5, ncol = 5)
+```
+
+### Combining vectors to create a matrix
+```{r}
+vector1 <- c(1:10)
+vector2 <- c(101:110)
+vector3 <- c(6:15)
+
+matrix1 <- rbind(vector1, vector2, vector3)
+matrix1
+
+matrix2 <- cbind(vector1, vector2, vector3)
+matrix2
+
+colnames(matrix2) <- c("column1", "column2", "column3")
+rownames(matrix2) <- c(1:10)
+matrix2
+
+matrix5
+matrix6 <- matrix(rep(11:25), 3, 5)
+matrix6
+matrix7 <- rbind(matrix5, matrix6)
+matrix7
+```
+
+### Combining matrices
+```{r}
+install.packages("gdata", dependencies=TRUE)
+library(gdata)
+matrix2
+dim(matrix2)
+matrix2
+dim(matrix3)
+cbindX(matrix2, matrix3)
+```
+
+### Selecting and extracting elements 
+
+## Data frames
+```{r}
+dataFrame3 <- as.data.frame(matrix3)
+View(dataFrame3)
+setwd("C:/Dropbox/book")
+worms <- read.table("./worms.txt", header=T)
+names(worms)
+worms[2, 2]
+worms[2, ]
+worms[order(worms$Soil.pH), ]
+detach (worms)
+worms[Damp==T,]
+worms[-(2:10),]
+na.exclude(worms)
+rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
+```
+
+
+## Apply functions family
+### Apply
+```{r}
+matrix8 <- matrix(c(1:20, 41:60), nrow = 10, ncol = 2)
+View(matrix8)
+apply(matrix8, 1, mean)
+apply(matrix8, 2, mean)
+apply(matrix8, 1:2, function(x) {sqrt(x) } )
+```
+
+### Lapply
+```{r}
+myList <- list(a = 21:40, b = 31:50)
+lapply(myList, sqrt)
+```
+
+
+### Sapply
+```{r}
+sapply(myList, sqrt)
+```
+## Plyr package
+```{r}
+set.seed(12)
+d <- data.frame(year = rep(2000:2002, each = 3), count = round(runif(9, 0, 20)))
+d <- data.frame(year = rep(2000:2002, each = 3), count = round(runif(9, 0, 20)))
+print(d)
+library(plyr)
+ddply(d, "year", function(x) {
+      mean.count <- mean(x$count)
+      sd.count <- sd(x$count)
+      cv <- sd.count/mean.count
+      data.frame(cv.count = cv)
+     }
+  )
+
+
+
+ddply(d, "year", summarise, mean.count = mean(count))
+
+ddply(d, "year", transform, total.count = sum(count))
+
+ddply(d, "year", mutate, mu = mean(count), sigma = sd(count), cv = sigma/mu)
+```
