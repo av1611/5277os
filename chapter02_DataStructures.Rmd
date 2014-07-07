@@ -107,12 +107,17 @@ colnames(matrix2) <- c("column1", "column2", "column3")
 rownames(matrix2) <- c(1:10)
 matrix2
 
+matrix5 <- matrix(rep(1:10), 2, 5)
 matrix5
 matrix6 <- matrix(rep(11:25), 3, 5)
 matrix6
 matrix7 <- rbind(matrix5, matrix6)
 matrix7
+matrix8 <- matrix6[, -1]
+matrix9 <- cbind(matrix5, matrix8)
+
 ```
+
 
 ### Combining matrices
 ```{r}
@@ -121,25 +126,34 @@ library(gdata)
 matrix2
 dim(matrix2)
 matrix2
+matrix3 <- matrix2[-10, ]
+matrix3
 dim(matrix3)
-cbindX(matrix2, matrix3)
+matrix2bind3<- cbindX(matrix2, matrix3)
 ```
 
 ### Selecting and extracting elements 
+
+```{r}
+matrix2[1, 1]
+matrix2[7, 3]
+matrix2[1, ]
+matrix2[, 3]
+```
 
 ## Data frames
 ```{r}
 dataFrame3 <- as.data.frame(matrix3)
 View(dataFrame3)
-setwd("C:/Dropbox/book")
+setwd("C:/Dropbox/5277OS - Learning Scientific Computing with R/5277os")
 worms <- read.table("./worms.txt", header=T)
 names(worms)
 worms[2, 2]
 worms[2, ]
-worms[order(worms$Soil.pH), ]
+wormsSoilPHOrdered <- worms[order(worms$Soil.pH), ]
 detach (worms)
-worms[Damp==T,]
-worms[-(2:10),]
+wormsDampTrue <- worms[worms$Damp==T, ]
+wormsRows2To10Removed <- worms[-(2:10),]
 na.exclude(worms)
 rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
 ```
