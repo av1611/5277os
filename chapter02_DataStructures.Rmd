@@ -67,6 +67,7 @@ myCharacterVector
 myStringVector[1]
 myStringVector[2]
 
+
 ```
 
 ## Performing basic mathematic operations on vectors 
@@ -154,7 +155,7 @@ wormsSoilPHOrdered <- worms[order(worms$Soil.pH), ]
 detach (worms)
 wormsDampTrue <- worms[worms$Damp==T, ]
 wormsRows2To10Removed <- worms[-(2:10),]
-na.exclude(worms)
+wormsNAremoved <- na.exclude(worms)
 rbind.fill(mtcars[c("mpg", "wt")], mtcars[c("wt", "cyl")])
 ```
 
