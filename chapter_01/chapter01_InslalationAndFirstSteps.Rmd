@@ -1,23 +1,10 @@
-# Installation And First Steps
+Installation And First Steps
+========================================================
 
+# A Shopper Problem: Choosing a tablet PC for purchase
 
-## Version control with Git
-### Initializing a repository
-git init
-### Adding files and subdirectories for tracking
-
-### Storing repositories on Github
-git add –A
-git commit –m “This is my first commit”
-git remote add origin http://jessythestudent.github.com/myfirstrepository
-git push origin master
-git clone http://av1611.github.com/5277os
-aptitude install git
-
-
-## A Shopper Problem: Choosing a tablet PC for purchase
 ```{r}
-setwd("C://Dropbox/5277OS - Learning Scientific Computing with R/DataFrames//Chapter_01")
+setwd("C://Dropbox/5277OS - Learning Scientific Computing with R/DataFrames/Chapter_01")
 read.csv("tabletpc.csv") -> tabletsTable
 
 View(tabletsTable)
@@ -26,7 +13,8 @@ tabletsTable$Screen
 
 tabletsTable[1, ]
 attach(tabletsTable)
-myFirstRegression <- lm(tabletsTable$Price ~ Screen + Resolution + NumberOfCore + ProcessorFrequency + RAM + Storage + BatteryTime, data = tabletsTable)
+myFirstRegression <- lm(tabletsTable$Price ~ Screen + Resolution + NumberOfCore +
+                          ProcessorFrequency + RAM + Storage + BatteryTime, data = tabletsTable)
 myFirstRegression
 
 predictedPrice <- predict(myFirstRegression, tabletsTable)
